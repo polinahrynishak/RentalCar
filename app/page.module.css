@@ -3,43 +3,39 @@
 }
 
 .container {
-  /* width: 90%; */
+  width: 100%;
   max-width: 1280px;
   margin: 0px auto;
   /* padding: 0 16px 16px; */
   position: relative;
-  z-index: 1;
+  z-index: 2;
   height: 100%;
-  /* display: flex;
-  flex-direction: column; */
-  margin-top: 436px;
-  /* justify-content: center; */
   align-items: center;
   text-align: center;
   color: white;
-  /* padding: 0 16px; */
+  padding: 0 16px;
+  padding-top: 436px;
 }
 
 .hero {
   position: relative;
-  height: 100vh;
+  width: 100%;
+  height: 700px;
   overflow: hidden;
 }
 
-/* background image */
 .heroImage {
   object-fit: cover;
-  z-index: -1;
+  z-index: 0;
 }
 
-/* затемнення поверх картинки */
-/* .hero::after {
+.hero::after {
   content: "";
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
   z-index: 0;
-} */
+}
 
 .title {
   font-weight: 700;
@@ -47,6 +43,7 @@
   line-height: 1.2;
   text-align: center;
   color: #fff;
+  margin: 0px;
   margin-bottom: 16px;
 }
 
@@ -56,18 +53,27 @@
   line-height: 1.33333;
   text-align: center;
   color: #fff;
+  margin: 0px;
   margin-bottom: 40px;
 }
 
 .homeBtn {
+  font-family: "Manrope", sans-serif;
   font-weight: 600;
   font-size: 16px;
   line-height: 1.25;
   color: #fff;
   border-radius: 12px;
-  padding: 12px 99px;
+
   width: 276px;
   height: 44px;
   background: #3470ff;
   border: none;
+  cursor: pointer;
+
+  transition: background-color 250ms linear;
+}
+
+.homeBtn:hover {
+  background-color: #0b44cd;
 }

@@ -6,7 +6,7 @@ export default function HomePage() {
     <main>
       <section className={css.hero}>
         <Image
-          src="/hero-pic-car.jpg"
+          src="/hero-pic-car.webp"
           alt="A modern car driving on the road in the sunset"
           fill
           priority
