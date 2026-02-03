@@ -1,0 +1,21 @@
+.imageWrapper {
+  position: relative; /* Обов'язково для fill */
+  width: 276px;
+  height: 268px;
+  overflow: hidden;
+  border-radius: 14px; /* Закруглення з макету */
+}
+
+.image {
+  object-fit: cover; /* Щоб картинка не розтягувалась, а акуратно вписалась */
+}
+
+.iconNormal {
+  fill: none;
+  stroke: white;
+}
+
+.iconActive {
+  fill: #3470ff;
+  stroke: #3470ff;
+}

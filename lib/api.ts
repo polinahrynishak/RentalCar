@@ -24,6 +24,18 @@ export interface FetchCarsResponse {
   totalPages: number;
 }
 
+export interface FilterValues {
+  brand: string;
+  rentalPrice: string;
+  minMileage: string;
+  maxMileage: string;
+}
+
+// export interface FetchCarsParams extends Partial<FilterValues> {
+//   page?: number;
+//   limit?: number;
+// }
+
 export const fetchCars = async ({
   page = 1,
   limit = 12,
