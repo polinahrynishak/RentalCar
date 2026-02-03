@@ -1,50 +1,60 @@
 import axios from "axios";
-import { Note, NewNote } from "@/types/note";
+import { Car, CarById, BrandsResponse } from "@/types/car";
 
 const api = axios.create({
-  baseURL: "https://notehub-public.goit.study/api",
-  headers: {
-    Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-  },
+  baseURL: "https://car-rental-api.goit.global/",
+  // headers: {
+  //   Authorization: `Bearer ${process.env.NEXT_PUBLIC_RENTALCAR_TOKEN}`,
+  // },
 });
 
-export interface FetchNotesResponse {
-  notes: Note[];
+export interface FetchCarsParams {
+  page?: number;
+  limit?: number;
+  brand?: string;
+  rentalPrice?: string;
+  minMileage?: string;
+  maxMileage?: string;
+}
+
+export interface FetchCarsResponse {
+  cars: Car[];
+  totalCars: number;
+  page: number;
   totalPages: number;
 }
 
-export interface FetchNotesParams {
-  page?: number;
-  perPage?: number;
-  search?: string;
-}
-
-export const fetchNotes = async ({
+export const fetchCars = async ({
   page = 1,
-  perPage = 12,
-  search = "",
-}: FetchNotesParams): Promise<FetchNotesResponse> => {
-  const response = await api.get<FetchNotesResponse>("/notes", {
+  limit = 12,
+  brand = "",
+  rentalPrice = "",
+  minMileage = "",
+  maxMileage = "",
+}: FetchCarsParams): Promise<FetchCarsResponse> => {
+  const response = await api.get<FetchCarsResponse>("cars", {
     params: {
       page,
-      perPage,
-      search,
+      limit,
+      brand: brand || undefined,
+      rentalPrice: rentalPrice || undefined,
+      minMileage: minMileage || undefined,
+      maxMileage: maxMileage || undefined,
     },
   });
   return response.data;
 };
 
-export const fetchNoteById = async (id: string): Promise<Note> => {
-  const response = await api.get<Note>(`/notes/${id}`);
-  return response.data;
+export const fetchCarById = async (id: string): Promise<Car> => {
+  const response = await api.get<CarById>(`cars/${id}`);
+  const { yea, ...rest } = response.data;
+  return {
+    ...rest,
+    year: yea,
+  };
 };
 
-export const createNote = async (noteData: NewNote): Promise<Note> => {
-  const response = await api.post<Note>("/notes", noteData);
-  return response.data;
-};
-
-export const deleteNote = async (noteId: string): Promise<Note> => {
-  const response = await api.delete<Note>(`/notes/${noteId}`);
+export const fetchBrands = async (): Promise<BrandsResponse> => {
+  const response = await api.get<BrandsResponse>("brands");
   return response.data;
 };

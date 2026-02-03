@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNote } from "@/lib/api";
 import * as Yup from "yup";
-import type { NewNote, NoteTag } from "@/types/note";
+import type { NewNote, NoteTag } from "@/types/car";
 import css from "./NoteForm.module.css";
 
 interface NoteFormProps {
@@ -43,7 +43,7 @@ const NoteForm = ({ onCancel }: NoteFormProps) => {
 
   const handleSubmit = (
     values: NewNote,
-    { resetForm }: { resetForm: () => void }
+    { resetForm }: { resetForm: () => void },
   ) => {
     mutate(values, {
       onSuccess: () => resetForm(),

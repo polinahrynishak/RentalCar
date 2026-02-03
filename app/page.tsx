@@ -1,5 +1,6 @@
 import css from "./page.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HomePage() {
   return (
@@ -17,7 +18,9 @@ export default function HomePage() {
           <p className={css.description}>
             Reliable and budget-friendly rentals for any journey
           </p>
-          <button className={css.homeBtn}>View Catalog</button>
+          <Link href="/catalog">
+            <button className={css.homeBtn}>View Catalog</button>
+          </Link>
         </div>
       </section>
     </main>
