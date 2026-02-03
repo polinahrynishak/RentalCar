@@ -1,15 +1,17 @@
 import { Car } from "@/types/car";
 import css from "./CarCard.module.css";
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useCarStore } from "@/store/useCarStore";
 
 interface CarCardProps {
   car: Car;
 }
 
 export const CarCard = ({ car }: CarCardProps) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { favorites, toggleFavorite } = useCarStore();
+
+  const isFavorite = favorites.includes(car.id);
 
   const addressParts = car.address.split(", ");
   const city = addressParts[addressParts.length - 2];
@@ -27,7 +29,7 @@ export const CarCard = ({ car }: CarCardProps) => {
         />
         <button
           className={css.favoriteBtn}
-          onClick={() => setIsFavorite(!isFavorite)}
+          onClick={() => toggleFavorite(car.id)}
           type="button"
         >
           <svg
@@ -58,7 +60,7 @@ export const CarCard = ({ car }: CarCardProps) => {
         </div>
       </div>
 
-      <Link href={`cars/${car.id}`} className={css.readMoreBtn}>
+      <Link href={`/catalog/${car.id}`} className={css.readMoreBtn}>
         Read more
       </Link>
     </div>

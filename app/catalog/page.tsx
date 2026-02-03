@@ -19,13 +19,14 @@ export default async function CatalogPage() {
   };
 
   await queryClient.prefetchQuery({
-    queryKey: ["cars", filters],
+    queryKey: ["cars", filters, 12],
     queryFn: () => fetchCars(filters),
   });
   const dehydratedState = dehydrate(queryClient);
+
   return (
     <HydrationBoundary state={dehydratedState}>
-      <CatalogClient initialFilters={filters} />
+      <CatalogClient />
     </HydrationBoundary>
   );
 }
