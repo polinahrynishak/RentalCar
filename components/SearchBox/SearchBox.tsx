@@ -1,6 +1,9 @@
+"use client";
+
 import css from "./SearchBox.module.css";
 import { useState } from "react";
 import { FilterValues } from "@/lib/api";
+import { useCarStore } from "@/store/useCarStore";
 
 interface SearchBoxProps {
   brands: string[];
@@ -14,23 +17,24 @@ for (let i = 30; i <= 150; i += 10) {
 }
 
 const SearchBox = ({ brands, onSearch }: SearchBoxProps) => {
-  const [filters, setFilters] = useState<FilterValues>({
-    brand: "",
-    rentalPrice: "",
-    minMileage: "",
-    maxMileage: "",
-  });
+  const { filters: storeFilters, setFilters: setStoreFilters } = useCarStore();
+  const [localFilters, setLocalFilters] = useState<FilterValues>(storeFilters);
 
   const [isOpenBrand, setIsOpenBrand] = useState(false);
   const [isOpenPrice, setIsOpenPrice] = useState(false);
 
   const handleChange = (name: keyof FilterValues, value: string) => {
-    setFilters((prev) => ({ ...prev, [name]: value }));
+    setLocalFilters((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(filters);
+
+    // 4. ТІЛЬКИ ТУТ оновлюємо глобальний стор
+    setStoreFilters(localFilters);
+
+    // 5. Викликаємо onSearch, який у CatalogClient зробить запит
+    onSearch(localFilters);
   };
 
   return (
@@ -42,7 +46,7 @@ const SearchBox = ({ brands, onSearch }: SearchBoxProps) => {
           <div className={css.customSelectWrapper}>
             <select
               className={css.selectBrand}
-              value={filters.brand}
+              value={localFilters.brand}
               onFocus={() => setIsOpenBrand(true)}
               onBlur={() => setIsOpenBrand(false)}
               onChange={(e) => {
@@ -72,7 +76,7 @@ const SearchBox = ({ brands, onSearch }: SearchBoxProps) => {
           <div className={css.customSelectWrapper}>
             <select
               className={css.selectPrice}
-              value={filters.rentalPrice}
+              value={localFilters.rentalPrice}
               onFocus={() => setIsOpenPrice(true)}
               onBlur={() => setIsOpenPrice(false)}
               onChange={(e) => {
@@ -104,7 +108,7 @@ const SearchBox = ({ brands, onSearch }: SearchBoxProps) => {
               <input
                 className={css.mileageInputLeft}
                 type="text"
-                value={filters.minMileage}
+                value={localFilters.minMileage}
                 onChange={(e) =>
                   handleChange(
                     "minMileage",
@@ -119,7 +123,7 @@ const SearchBox = ({ brands, onSearch }: SearchBoxProps) => {
               <input
                 className={css.mileageInputRight}
                 type="text"
-                value={filters.maxMileage}
+                value={localFilters.maxMileage}
                 onChange={(e) =>
                   handleChange(
                     "maxMileage",

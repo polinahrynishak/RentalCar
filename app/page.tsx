@@ -1,8 +1,19 @@
+"use client";
+
 import css from "./page.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
+import { useCarStore } from "@/store/useCarStore";
 
 export default function HomePage() {
+  const resetFilters = useCarStore((state) => state.resetFilters);
+
+  useEffect(() => {
+    // Скидаємо фільтри при кожному вході на головну
+    resetFilters();
+  }, [resetFilters]);
+
   return (
     <main>
       <section className={css.hero}>

@@ -11,6 +11,7 @@ interface CarState {
   setFilters: (filters: FilterValues) => void;
   toggleFavorite: (id: string) => void;
   resetCars: () => void;
+  resetFilters: () => void;
 }
 
 export const useCarStore = create<CarState>()(
@@ -37,6 +38,16 @@ export const useCarStore = create<CarState>()(
         })),
 
       resetCars: () => set({ cars: [] }),
+
+      resetFilters: () =>
+        set({
+          filters: {
+            brand: "",
+            rentalPrice: "",
+            minMileage: "",
+            maxMileage: "",
+          },
+        }),
     }),
     {
       name: "car-storage", // назва ключа в localStorage
