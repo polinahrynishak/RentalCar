@@ -17,6 +17,12 @@ export const CarCard = ({ car }: CarCardProps) => {
   const city = addressParts[addressParts.length - 2];
   const country = addressParts[addressParts.length - 1];
 
+  const mileageStr = car.mileage.toString();
+  const formattedMileage =
+    mileageStr.length > 3
+      ? mileageStr.slice(0, -3) + " " + mileageStr.slice(-3)
+      : mileageStr;
+
   return (
     <div className={css.card}>
       <div className={css.imageWrapper}>
@@ -37,7 +43,7 @@ export const CarCard = ({ car }: CarCardProps) => {
             height="16"
             className={isFavorite ? css.iconActive : css.iconNormal}
           >
-            <use href={`/icons.svg#Love`} />
+            <use href={`/icons.svg#${isFavorite ? "Love-blue" : "Love"}`} />
           </svg>
         </button>
       </div>
@@ -54,9 +60,9 @@ export const CarCard = ({ car }: CarCardProps) => {
         <div className={css.details}>
           <span>{city}</span> | <span>{country}</span> |{" "}
           <span>{car.rentalCompany}</span>
-          <br />
-          <span>{car.type}</span> | <span>{car.model}</span> |{" "}
-          <span>{car.id}</span> | <span>{car.functionalities[0]}</span>
+        </div>
+        <div className={css.details}>
+          <span>{car.type}</span> | <span>{formattedMileage} km</span>
         </div>
       </div>
 

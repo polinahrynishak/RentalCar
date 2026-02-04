@@ -1,21 +1,102 @@
-.imageWrapper {
-  position: relative; /* Обов'язково для fill */
-  width: 276px;
-  height: 268px;
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 276px;
+  border-radius: 14px;
   overflow: hidden;
-  border-radius: 14px; /* Закруглення з макету */
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 276 / 268;
+  overflow: hidden;
+  border-radius: 14px;
 }
 
 .image {
-  object-fit: cover; /* Щоб картинка не розтягувалась, а акуратно вписалась */
+  object-fit: cover;
+}
+
+.favoriteBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .iconNormal {
   fill: none;
-  stroke: white;
+  stroke: #fff;
 }
 
 .iconActive {
   fill: #3470ff;
   stroke: #3470ff;
+}
+
+.info {
+  padding: 16px 0 28px 0;
+}
+
+.titleLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-family: "Manrope", sans-serif;
+  margin: 0;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+  flex-shrink: 0;
+
+  .accent {
+    color: #3470ff;
+  }
+
+  .price {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #101828;
+  }
+}
+
+.details {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.3;
+  color: #8d929a;
+  display: flex;
+  gap: 6px;
+}
+
+.readMoreBtn {
+  display: block;
+  width: 100%;
+  padding: 12px 0;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+  color: #fff;
+  background-color: #3470ff;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background-color 250 ease;
+}
+
+.readMoreBtn:hover {
+  background-color: #0b44cd;
 }

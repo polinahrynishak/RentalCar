@@ -1,3 +1,37 @@
+.container {
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 84px;
+  margin-bottom: 56px;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.3;
+  color: #8d929a;
+}
+
+.optionBrand {
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+}
+
 .customSelectWrapper {
   position: relative;
   display: flex;
@@ -6,30 +40,44 @@
 
 .chevronIcon {
   position: absolute;
-  right: 18px;
-  width: 20px;
-  height: 20px;
-  pointer-events: none; /* Щоб клік працював по селекту */
-  fill: none;
-  stroke: #121417; /* Колір з макету */
+  right: 14px;
+  width: 16px;
+  height: 16px;
+  fill: #121417;
+  pointer-events: none;
 }
 
-/* Прибираємо стандартну стрілку браузера */
 .selectBrand,
 .selectPrice {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  width: 100%;
-  padding: 14px 18px;
-  border-radius: 14px;
-  background-color: #f7f7fb;
   border: none;
+  border-radius: 14px;
+  padding: 12px 16px;
+  width: 204px;
+  height: 44px;
+  background: #f7f7f7;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+  cursor: pointer;
+}
+
+.selectBrand option,
+.selectPrice option {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #8d929a;
 }
 
 .mileageContainer {
   display: flex;
-  align-items: center;
+  align-items: stretch;
+  gap: 0;
 }
 
 .inputWrapper {
@@ -38,33 +86,58 @@
   align-items: center;
 }
 
-/* Статичний текст "From" та "To" */
 .inputPrefix {
   position: absolute;
-  left: 18px;
-  font-size: 18px;
-  line-height: 1.11;
-  color: #121417; /* Основний колір тексту */
+  left: 24px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
   pointer-events: none;
 }
 
 .mileageInputLeft,
 .mileageInputRight {
-  width: 160px;
-  height: 48px;
-  padding: 14px 18px 14px 70px; /* Великий відступ зліва, щоб текст не налізав на "From/To" */
-  background-color: #f7f7fb;
+  width: 90px;
+  height: 44px;
+  padding: 0px 0px 0px 70px;
+  background-color: #f7f7f7;
   border: none;
-  font-size: 18px;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
   outline: none;
 }
 
-/* Склеюємо інпути: прибираємо радіуси з внутрішніх сторін */
 .mileageInputLeft {
   border-radius: 14px 0 0 14px;
-  border-right: 1px solid rgba(138, 138, 137, 0.2); /* Тонка лінія розділювач */
+  border-right: 1px solid rgba(138, 138, 137, 0.2);
 }
 
 .mileageInputRight {
   border-radius: 0 14px 14px 0;
+  padding: 0px 0px 0px 50px;
+  width: 110px;
+}
+
+.searchBtn {
+  align-self: last baseline;
+  height: 44px;
+  padding: 12px 51px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #fff;
+  background-color: #3470ff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 250 linear;
+}
+
+.searchBtn:hover {
+  background-color: #0b44cd;
 }

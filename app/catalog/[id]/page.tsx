@@ -4,7 +4,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import { fetchCarById } from "@/lib/api";
-import NoteDetailsClient from "./NoteDetails.client";
+import CarDetails from "./CarDetails.client";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -21,7 +21,7 @@ export default async function CarDetailsPage({ params }: PageProps) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <NoteDetailsClient />
+      <CarDetails />
     </HydrationBoundary>
   );
 }

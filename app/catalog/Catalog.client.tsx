@@ -50,6 +50,7 @@ export const CatalogClient = () => {
 
       <main className={css.main}>
         {isLoading && limit === 12 && <Loader />}
+
         {isError && <ErrorMessage />}
 
         {cars.length > 0 ? (

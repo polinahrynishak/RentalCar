@@ -50,7 +50,9 @@ const SearchBox = ({ brands, onSearch }: SearchBoxProps) => {
                 e.target.blur();
               }}
             >
-              <option value="">Choose a brand</option>
+              <option className={css.optionBrand} value="">
+                Choose a brand
+              </option>
               {brands.map((b) => (
                 <option key={b} value={b}>
                   {b}
