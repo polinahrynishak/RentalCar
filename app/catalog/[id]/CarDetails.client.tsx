@@ -140,6 +140,7 @@ export default function CarDetailsClient() {
               fill
               sizes="(max-width: 768px) 100vw, 640px"
               className={css.mainImage}
+              loading="eager"
             />
           </div>
 

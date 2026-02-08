@@ -13,6 +13,9 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "RentalCar",
   description: "Reliable and budget-friendly rentals for any journey",
+  icons: {
+    icon: "/images.png",
+  },
 };
 
 export default function RootLayout({

@@ -27,6 +27,7 @@ export const CarCard = ({ car }: CarCardProps) => {
           fill
           className={css.image}
           sizes="(max-width: 768px) 100vw, 276px"
+          loading="eager"
         />
         <button
           className={css.favoriteBtn}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { fetchCars, fetchBrands, FilterValues } from "@/lib/api";
 import { useCarStore } from "@/store/useCarStore";
@@ -26,9 +26,11 @@ export const CatalogClient = () => {
     placeholderData: keepPreviousData,
   });
 
-  if (data && data.cars !== cars) {
-    setCars(data.cars);
-  }
+  useEffect(() => {
+    if (data && data.cars !== cars) {
+      setCars(data.cars);
+    }
+  }, [data, cars, setCars]);
 
   const handleSearch = (newFilters: FilterValues) => {
     resetCars();

@@ -53,8 +53,14 @@ const SearchBox = ({ brands, onSearch }: SearchBoxProps) => {
         <div className={css.filterGroup}>
           <label className={css.label}>Car brand</label>
           <Select.Root
-            value={localFilters.brand || undefined}
-            onValueChange={(value) => handleChange("brand", value || "")}
+            value={
+              localFilters.brand === ""
+                ? "__choose_brand"
+                : localFilters.brand || undefined
+            }
+            onValueChange={(value) =>
+              handleChange("brand", value === "__choose_brand" ? "" : value)
+            }
           >
             <Select.Trigger
               className={css.selectTrigger}
@@ -74,6 +80,14 @@ const SearchBox = ({ brands, onSearch }: SearchBoxProps) => {
                 collisionPadding={0}
               >
                 <Select.Viewport className={css.selectViewport}>
+                  <Select.Item
+                    key="__choose_brand"
+                    className={css.selectItem}
+                    value="__choose_brand"
+                    textValue="Choose a brand"
+                  >
+                    <Select.ItemText>Choose a brand</Select.ItemText>
+                  </Select.Item>
                   {brands.map((b) => (
                     <Select.Item
                       key={b}
@@ -94,8 +108,17 @@ const SearchBox = ({ brands, onSearch }: SearchBoxProps) => {
         <div className={css.filterGroup}>
           <label className={css.label}>Price / 1 hour</label>
           <Select.Root
-            value={localFilters.rentalPrice || undefined}
-            onValueChange={(value) => handleChange("rentalPrice", value || "")}
+            value={
+              localFilters.rentalPrice === ""
+                ? "__choose_price"
+                : localFilters.rentalPrice || undefined
+            }
+            onValueChange={(value) =>
+              handleChange(
+                "rentalPrice",
+                value === "__choose_price" ? "" : value,
+              )
+            }
           >
             <Select.Trigger
               className={css.selectTrigger}
@@ -119,6 +142,14 @@ const SearchBox = ({ brands, onSearch }: SearchBoxProps) => {
                 collisionPadding={0}
               >
                 <Select.Viewport className={css.selectViewport}>
+                  <Select.Item
+                    key="__choose_price"
+                    className={css.selectItem}
+                    value="__choose_price"
+                    textValue="Choose a price"
+                  >
+                    <Select.ItemText>Choose a price</Select.ItemText>
+                  </Select.Item>
                   {priceOptions.map((p) => (
                     <Select.Item
                       key={p}
