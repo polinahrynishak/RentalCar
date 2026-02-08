@@ -1,72 +1,72 @@
 # RentalCar
 
-**Веб-застосунок каталогу оренди автомобілів** — зручний пошук та перегляд авто з можливістю фільтрації, обраних оголошень та форми бронювання.
+**Car rental catalog web app** — browse and search cars with filters, favorites, and a booking form.
 
 ---
 
-## Короткий опис
+## Short description
 
-RentalCar — це сучасний односторінковий застосунок на Next.js для перегляду каталогу автомобілів на оренду. Користувачі можуть шукати авто за брендом, ціною та пробігом, переглядати детальну інформацію про кожне авто та надсилати заявку на бронювання. Обрані оголошення зберігаються в браузері.
-
----
-
-## Основні функції
-
-- **Головна сторінка** — hero-блок з переходом у каталог
-- **Каталог авто** — сітка карток з фото, брендом, моделлю, роком, ціною та пробігом
-- **Фільтри пошуку:**
-  - бренд авто (селект з API)
-  - ціна оренди (від 30 до 150)
-  - мінімальний та максимальний пробіг
-- **Пагінація** — перемикання сторінок каталогу
-- **Сторінка деталей авто** — повна інформація (опис, паливо, двигун, аксесуари, умови оренди тощо)
-- **Форма бронювання** — ім’я, email, дата, коментар; валідація та сповіщення (toast)
-- **Обране** — додавання/видалення авто в обране з збереженням у `localStorage`
+RentalCar is a modern Next.js app for browsing a catalog of rental cars. Users can search by brand, price, and mileage, view detailed info for each car, and submit a booking request. Favorites are stored in the browser.
 
 ---
 
-## Технології
+## Main features
+
+- **Home page** — hero section with a link to the catalog
+- **Car catalog** — grid of cards with photo, brand, model, year, price, and mileage
+- **Search filters:**
+  - car brand (select from API)
+  - rental price (30 to 150)
+  - min and max mileage
+- **Pagination** — switch between catalog pages
+- **Car details page** — full info (description, fuel, engine, accessories, rental conditions, etc.)
+- **Booking form** — name, email, date, comment; validation and toast notifications
+- **Favorites** — add/remove cars to favorites, persisted in `localStorage`
+
+---
+
+## Tech stack
 
 - **Next.js** (App Router)
 - **React**, **TypeScript**
-- **TanStack Query** — завантаження та кешування даних
-- **Zustand** — стан (фільтри, обране) з persist
-- **Axios** — запити до API
+- **TanStack Query** — data fetching and caching
+- **Zustand** — state (filters, favorites) with persist
+- **Axios** — API requests
 - **Radix UI Select**, **react-datepicker**, **react-hot-toast**
-- **CSS Modules** для стилів
+- **CSS Modules** for styling
 
 ---
 
-## Встановлення
+## Installation
 
-### Кроки
+### Steps
 
-1. Клонуйте репозиторій:
+1. Clone the repository:
 
 ```bash
-git clone <url-репозиторію>
+git clone <repository-url>
 cd RentalCar
 ```
 
-2. Встановіть залежності:
+2. Install dependencies:
 
 ```bash
 npm install
 ```
 
-3. Запустіть режим розробки:
+3. Run the development server:
 
 ```bash
 npm run dev
 ```
 
-4. Відкрийте в браузері: [http://localhost:3000](http://localhost:3000).
+4. Open in the browser: [http://localhost:3000](http://localhost:3000).
 
 ---
 
-## Автор
+## Author
 
-Проєкт розроблено як портфоліо застосунок.  
-Автор https://github.com/polinahrynishak
+Portfolio project.  
+Author: [polinahrynishak](https://github.com/polinahrynishak)
 
 ---
