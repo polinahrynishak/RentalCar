@@ -1,5 +1,4 @@
 .wrapper {
-  /* min-height: 100%; */
   padding: 40px 0;
 }
 
@@ -255,7 +254,7 @@
   color: #dc2626;
 }
 
-/* Datepicker calendar — стилі за макетом 276×284 */
+/* Datepicker calendar */
 .datepickerCalendar {
   font-family: "Manrope", sans-serif;
   width: 276px;
@@ -275,7 +274,7 @@
   padding: 8px 8px 12px;
 }
 
-/* Caret (трикутник) над календарем — рендериться в popper */
+
 :global(.react-datepicker-popper .react-datepicker__triangle) {
   fill: #fff !important;
   stroke: #3470ff !important;

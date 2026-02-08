@@ -20,7 +20,7 @@ export const CatalogClient = () => {
     queryFn: fetchBrands,
   });
 
-  const { data, isLoading, isFetching, isError } = useQuery({
+  const { data, isFetching, isError } = useQuery({
     queryKey: ["cars", filters, limit],
     queryFn: () => fetchCars({ ...filters, page: 1, limit }),
     placeholderData: keepPreviousData,
@@ -33,11 +33,11 @@ export const CatalogClient = () => {
   const handleSearch = (newFilters: FilterValues) => {
     resetCars();
     setFilters(newFilters);
-    setLimit(12); 
+    setLimit(12);
   };
 
   const handleLoadMore = () => {
-    setLimit((prev) => prev + 12); 
+    setLimit((prev) => prev + 12);
   };
 
   const hasMore = data ? data.cars.length < data.totalCars : false;

@@ -10,7 +10,7 @@ export default function HomePage() {
   const resetFilters = useCarStore((state) => state.resetFilters);
 
   useEffect(() => {
-    // Скидаємо фільтри при кожному вході на головну
+   
     resetFilters();
   }, [resetFilters]);
 

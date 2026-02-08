@@ -31,11 +31,6 @@ export interface FilterValues {
   maxMileage: string;
 }
 
-// export interface FetchCarsParams extends Partial<FilterValues> {
-//   page?: number;
-//   limit?: number;
-// }
-
 export const fetchCars = async ({
   page = 1,
   limit = 12,
