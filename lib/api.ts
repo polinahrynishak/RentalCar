@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Car, CarById, BrandsResponse } from "@/types/car";
+import { Car, BrandsResponse } from "@/types/car";
 
 const api = axios.create({
   baseURL: "https://car-rental-api.goit.global/",
@@ -58,12 +58,8 @@ export const fetchCars = async ({
 };
 
 export const fetchCarById = async (id: string): Promise<Car> => {
-  const response = await api.get<CarById>(`cars/${id}`);
-  const { yea, ...rest } = response.data;
-  return {
-    ...rest,
-    year: yea,
-  };
+  const response = await api.get<Car>(`cars/${id}`);
+  return response.data;
 };
 
 export const fetchBrands = async (): Promise<BrandsResponse> => {

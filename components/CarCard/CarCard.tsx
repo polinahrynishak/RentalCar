@@ -3,6 +3,7 @@ import css from "./CarCard.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { useCarStore } from "@/store/useCarStore";
+import { formatMileage } from "@/types/car";
 
 interface CarCardProps {
   car: Car;
@@ -16,12 +17,6 @@ export const CarCard = ({ car }: CarCardProps) => {
   const addressParts = car.address.split(", ");
   const city = addressParts[addressParts.length - 2];
   const country = addressParts[addressParts.length - 1];
-
-  const mileageStr = car.mileage.toString();
-  const formattedMileage =
-    mileageStr.length > 3
-      ? mileageStr.slice(0, -3) + " " + mileageStr.slice(-3)
-      : mileageStr;
 
   return (
     <div className={css.card}>
@@ -62,7 +57,7 @@ export const CarCard = ({ car }: CarCardProps) => {
           <span>{car.rentalCompany}</span>
         </div>
         <div className={css.details}>
-          <span>{car.type}</span> | <span>{formattedMileage} km</span>
+          <span>{car.type}</span> | <span>{formatMileage(car.mileage)} km</span>
         </div>
       </div>
 

@@ -1,7 +1,7 @@
 const EmptyState = () => {
   return (
     <div>
-      <p>No notes found. Create your first one!</p>
+      <p>No cars found.</p>
     </div>
   );
 };

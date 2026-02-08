@@ -24,18 +24,34 @@
   color: #8d929a;
 }
 
-.optionBrand {
+/* Кастомний дропдаун (Radix Select) */
+.selectTrigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 204px;
+  height: 44px;
+  padding: 12px 40px 12px 16px;
+  border: none;
+  border-radius: 14px;
+  background: #f7f7f7;
   font-family: "Manrope", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
   color: #101828;
+  cursor: pointer;
+  outline: none;
+  text-align: left;
 }
 
-.customSelectWrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
+.selectTrigger [data-placeholder] {
+  color: #8d929a;
+}
+
+.selectTrigger[data-state="open"] {
+  border-radius: 14px 14px 0 0;
 }
 
 .chevronIcon {
@@ -45,33 +61,74 @@
   height: 16px;
   fill: #121417;
   pointer-events: none;
+  transition: transform 0.2s ease;
 }
 
-.selectBrand,
-.selectPrice {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border: none;
-  border-radius: 14px;
-  padding: 12px 16px;
-  width: 204px;
-  height: 44px;
-  background: #f7f7f7;
-  font-family: inherit;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-  color: #101828;
-  cursor: pointer;
+.selectTrigger[data-state="open"] .chevronIcon {
+  transform: rotate(180deg);
 }
 
-.selectBrand option,
-.selectPrice option {
+.selectContent {
+  width: var(--radix-select-trigger-width);
+  max-height: var(--radix-select-content-available-height);
+  background: #fff;
+  border-radius: 0 0 14px 14px;
+  overflow: hidden;
+  z-index: 50;
+}
+
+.selectViewport {
+  max-height: 272px;
+  padding: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-radius: 0 0 14px 14px;
+  background: #fff;
+  scrollbar-width: thin !important;
+  -ms-overflow-style: auto !important;
+  scrollbar-color: #dadde1 transparent;
+}
+
+.selectViewport::-webkit-scrollbar {
+  display: block !important;
+  width: 8px;
+}
+
+.selectViewport::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.selectViewport::-webkit-scrollbar-thumb {
+  background: #8d929a;
+  border-radius: 4px;
+  min-height: 40px;
+}
+
+.selectViewport::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+.selectItem {
+  padding: 10px 16px;
+  font-family: "Manrope", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
   color: #8d929a;
+  cursor: pointer;
+  outline: none;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.selectItem[data-highlighted] {
+  color: #101828;
+  background: #f7f7f7;
+}
+
+.selectItem[data-state="checked"] {
+  color: #101828;
 }
 
 .mileageContainer {
