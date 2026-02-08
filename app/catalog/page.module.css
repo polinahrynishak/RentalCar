@@ -25,6 +25,5 @@
 }
 
 .loadMoreBtn:hover {
-  background-color: #0b44cd;
-  color: #fff;
+  border: 1px solid #0b44cd;
 }

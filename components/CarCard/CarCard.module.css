@@ -47,7 +47,9 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  gap: 8px;
   margin-bottom: 8px;
+  min-width: 0;
 }
 
 .title {
@@ -57,18 +59,23 @@
   font-size: 16px;
   line-height: 1.25;
   color: #101828;
-  flex-shrink: 0;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   .accent {
     color: #3470ff;
   }
+}
 
-  .price {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1.25;
-    color: #101828;
-  }
+.price {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+  flex-shrink: 0;
 }
 
 .details {

@@ -16,6 +16,22 @@ for (let i = 30; i <= 150; i += 10) {
   priceOptions.push(i);
 }
 
+function formatMileageDisplay(value: string): string {
+  const digits = value
+    .split("")
+    .filter((char) => char >= "0" && char <= "9")
+    .join("");
+  if (!digits) return "";
+  return Number(digits).toLocaleString("en-US");
+}
+
+function parseMileageInput(value: string): string {
+  return value
+    .split("")
+    .filter((char) => char >= "0" && char <= "9")
+    .join("");
+}
+
 const SearchBox = ({ brands, onSearch }: SearchBoxProps) => {
   const { filters: storeFilters, setFilters: setStoreFilters } = useCarStore();
   const [localFilters, setLocalFilters] = useState<FilterValues>(storeFilters);
@@ -40,7 +56,10 @@ const SearchBox = ({ brands, onSearch }: SearchBoxProps) => {
             value={localFilters.brand || undefined}
             onValueChange={(value) => handleChange("brand", value || "")}
           >
-            <Select.Trigger className={css.selectTrigger} aria-label="Car brand">
+            <Select.Trigger
+              className={css.selectTrigger}
+              aria-label="Car brand"
+            >
               <Select.Value placeholder="Choose a brand" />
               <svg className={css.chevronIcon} aria-hidden>
                 <use href="/icons.svg#Down" />
@@ -78,7 +97,10 @@ const SearchBox = ({ brands, onSearch }: SearchBoxProps) => {
             value={localFilters.rentalPrice || undefined}
             onValueChange={(value) => handleChange("rentalPrice", value || "")}
           >
-            <Select.Trigger className={css.selectTrigger} aria-label="Price per hour">
+            <Select.Trigger
+              className={css.selectTrigger}
+              aria-label="Price per hour"
+            >
               {localFilters.rentalPrice ? (
                 `To $${localFilters.rentalPrice}`
               ) : (
@@ -122,12 +144,10 @@ const SearchBox = ({ brands, onSearch }: SearchBoxProps) => {
               <input
                 className={css.mileageInputLeft}
                 type="text"
-                value={localFilters.minMileage}
+                inputMode="numeric"
+                value={formatMileageDisplay(localFilters.minMileage)}
                 onChange={(e) =>
-                  handleChange(
-                    "minMileage",
-                    e.target.value.replace(/[^0-9]/g, ""),
-                  )
+                  handleChange("minMileage", parseMileageInput(e.target.value))
                 }
               />
             </div>
@@ -136,12 +156,10 @@ const SearchBox = ({ brands, onSearch }: SearchBoxProps) => {
               <input
                 className={css.mileageInputRight}
                 type="text"
-                value={localFilters.maxMileage}
+                inputMode="numeric"
+                value={formatMileageDisplay(localFilters.maxMileage)}
                 onChange={(e) =>
-                  handleChange(
-                    "maxMileage",
-                    e.target.value.replace(/[^0-9]/g, ""),
-                  )
+                  handleChange("maxMileage", parseMileageInput(e.target.value))
                 }
               />
             </div>
