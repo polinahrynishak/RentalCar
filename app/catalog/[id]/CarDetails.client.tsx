@@ -89,6 +89,7 @@ export default function CarDetailsClient() {
   const {
     data: car,
     isLoading,
+    isFetching,
     isError,
   } = useQuery({
     queryKey: ["car", id],
@@ -96,7 +97,7 @@ export default function CarDetailsClient() {
     enabled: !!id,
   });
 
-  if (isLoading)
+  if (isLoading || (isFetching && !car))
     return (
       <div className={css.wrapper}>
         <Loader />

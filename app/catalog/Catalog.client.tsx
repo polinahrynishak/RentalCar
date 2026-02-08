@@ -20,7 +20,7 @@ export const CatalogClient = () => {
     queryFn: fetchBrands,
   });
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isFetching, isError } = useQuery({
     queryKey: ["cars", filters, limit],
     queryFn: () => fetchCars({ ...filters, page: 1, limit }),
     placeholderData: keepPreviousData,
@@ -49,24 +49,26 @@ export const CatalogClient = () => {
       </section>
 
       <main className={css.main}>
-        {isLoading && limit === 12 && <Loader />}
+        {isFetching && cars.length === 0 && <Loader />}
 
-        {isError && <ErrorMessage />}
+        {!isFetching && isError && <ErrorMessage />}
 
-        {cars.length > 0 ? (
-          <CarList cars={cars} />
-        ) : (
-          !isLoading && !isError && data && <EmptyState />
-        )}
+        {cars.length > 0 && <CarList cars={cars} />}
+
+        {!isFetching && !isError && cars.length === 0 && data && <EmptyState />}
 
         {hasMore && (
-          <button
-            type="button"
-            className={css.loadMoreBtn}
-            onClick={handleLoadMore}
-          >
-            Load more
-          </button>
+          <div className={css.loadMoreWrapper}>
+            {isFetching && cars.length > 0 && <Loader />}
+            <button
+              type="button"
+              className={css.loadMoreBtn}
+              onClick={handleLoadMore}
+              disabled={isFetching}
+            >
+              Load more
+            </button>
+          </div>
         )}
       </main>
     </div>
