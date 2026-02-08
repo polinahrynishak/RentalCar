@@ -36,8 +36,16 @@ function Icon({
   );
 }
 
+function formatDateRange(start: Date | null, end: Date | null): string {
+  if (!start && !end) return "";
+  if (start && !end) return start.toLocaleDateString("en-CA");
+  if (!start && end) return end.toLocaleDateString("en-CA");
+  return `${(start as Date).toLocaleDateString("en-CA")} - ${(end as Date).toLocaleDateString("en-CA")}`;
+}
+
 export default function CarDetailsClient() {
-  const [bookingDate, setBookingDate] = useState<Date | null>(null);
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -72,14 +80,19 @@ export default function CarDetailsClient() {
     });
 
     setFormData({ name: "", email: "", bookingDate: "", comment: "" });
-    setBookingDate(null);
+    setStartDate(null);
+    setEndDate(null);
   };
 
-  const handleDateChange = (date: Date | null) => {
-    setBookingDate(date);
+  const handleDateRangeChange = (
+    dates: [Date | null, Date | null],
+  ) => {
+    const [start, end] = dates;
+    setStartDate(start ?? null);
+    setEndDate(end ?? null);
     setFormData((prev) => ({
       ...prev,
-      bookingDate: date ? date.toLocaleDateString("en-CA") : "",
+      bookingDate: formatDateRange(start ?? null, end ?? null),
     }));
   };
 
@@ -152,8 +165,10 @@ export default function CarDetailsClient() {
               />
               <div className={css.datepickerWrap}>
                 <DatePicker
-                  selected={bookingDate}
-                  onChange={handleDateChange}
+                  selectsRange
+                  startDate={startDate}
+                  endDate={endDate}
+                  onChange={handleDateRangeChange}
                   dateFormat="dd.MM.yyyy"
                   placeholderText="Booking date"
                   className={css.datepickerInput}

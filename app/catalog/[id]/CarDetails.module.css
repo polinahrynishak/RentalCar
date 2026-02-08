@@ -82,6 +82,11 @@
   width: 100%;
 }
 
+.datepickerWrap :global(.react-datepicker-wrapper) {
+  display: block;
+  width: 100%;
+}
+
 .datepickerWrap .datepickerInput {
   width: 100%;
   box-sizing: border-box;
@@ -355,8 +360,15 @@
 }
 
 .datepickerCalendar :global(.react-datepicker__day--selected),
-.datepickerCalendar :global(.react-datepicker__day--keyboard-selected) {
+.datepickerCalendar :global(.react-datepicker__day--keyboard-selected),
+.datepickerCalendar :global(.react-datepicker__day--in-range),
+.datepickerCalendar :global(.react-datepicker__day--in-selecting-range) {
   background: #3470ff !important;
+  color: #fff !important;
+}
+
+.datepickerCalendar :global(.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range)) {
+  background: rgba(52, 112, 255, 0.5) !important;
   color: #fff !important;
 }
 
@@ -364,7 +376,7 @@
   :global(
     .react-datepicker__day:hover:not(.react-datepicker__day--selected):not(
         .react-datepicker__day--keyboard-selected
-      )
+      ):not(.react-datepicker__day--in-range):not(.react-datepicker__day--in-selecting-range)
   ) {
   background: rgba(52, 112, 255, 0.12);
   border-radius: 50%;
